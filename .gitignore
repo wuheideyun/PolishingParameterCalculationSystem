@@ -1,1 +1,17 @@
 *.pyc
+__pycache__\
+*.pyc
+__pycache__/CalcSys.cpython-312.pyc
+__pycache__/CalcSysImpl.cpython-312.pyc
+__pycache__/demo.cpython-312.pyc
+__pycache__/Page1_Sync_Algorithms_Equal_Parameter_Calculate.cpython-312.pyc
+__pycache__/Page1_Sync_Algorithms_Generate_Animation.cpython-312.pyc
+__pycache__/Page1_Sync_Algorithms_Middle_Line_Plot.cpython-312.pyc
+__pycache__/Page1_Sync_Algorithms_Polishing_Distribution_Simulation.cpython-312.pyc
+__pycache__/Page1_Sync_Calc_Window.cpython-312.pyc
+__pycache__/Page2_Sync_Algorithms_Generate_Animation.cpython-312.pyc
+__pycache__/Page2_Sync_Algorithms_Middle_Line_Plot.cpython-312.pyc
+__pycache__/Page2_Sync_Algorithms_Polishing_Distribution_Simulation.cpython-312.pyc
+__pycache__/Page2_Sync_Sim_Window.cpython-312.pyc
+__pycache__/Page3_Double_Calc_Window.cpython-312.pyc
+__pycache__/Page4_Double_Sim_Window.cpython-312.pyc
