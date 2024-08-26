@@ -1,7 +1,7 @@
 import numpy as np
 import math
 def equal_num_calculate(v1,ceramic_width,between,R,overlap,a,beam_speed_up):
-    # 计算最佳斜率（轨迹重叠overlap mm）
+    # 计算最佳斜率（轨迹重叠overlap mm）哈哈哈
     theta = math.asin((2 * R - overlap) / between)
     v2_mid = v1 * math.tan(theta)
     # 磨头摆动速度上限设为beam_speed_up mm/s
