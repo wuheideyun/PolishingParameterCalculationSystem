@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>834</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="BodyLabel" name="label">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;磨头间距：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="LineEdit" name="between"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="BodyLabel" name="label_5">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;磨块尺寸：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3" colspan="2">
+     <widget class="LineEdit" name="grind_size"/>
+    </item>
+    <item row="0" column="5">
+     <widget class="BodyLabel" name="label_8">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;皮带速度：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="6">
+     <widget class="LineEdit" name="belt_speed"/>
+    </item>
+    <item row="0" column="7">
+     <widget class="BodyLabel" name="label_4">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;加速度大小：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="8" colspan="2">
+     <widget class="LineEdit" name="a_speed"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="BodyLabel" name="label_2">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;磨头半径：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="LineEdit" name="radius"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="BodyLabel" name="label_6">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;进砖宽度：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3" colspan="2">
+     <widget class="LineEdit" name="ceramic_width"/>
+    </item>
+    <item row="1" column="5">
+     <widget class="BodyLabel" name="label_7">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;摆动速度上限：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="LineEdit" name="beam_speed_up"/>
+    </item>
+    <item row="1" column="7">
+     <widget class="BodyLabel" name="label_3">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;轨迹重叠量：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="8" colspan="2">
+     <widget class="LineEdit" name="overlap"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="PrimaryPushButton" name="energy_button">
+      <property name="text">
+       <string>节能计算</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3" colspan="2">
+     <widget class="PrimaryPushButton" name="efficient_button">
+      <property name="text">
+       <string>高效计算</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="6">
+     <widget class="PrimaryPushButton" name="simulation_button">
+      <property name="text">
+       <string>抛磨量分布仿真</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="7" colspan="2">
+     <widget class="PrimaryPushButton" name="middle_line_button">
+      <property name="text">
+       <string>轨迹中心线绘制</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="9">
+     <widget class="PrimaryPushButton" name="animation_button">
+      <property name="text">
+       <string>动画按钮</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="BodyLabel" name="label_9">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;横梁摆动速度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="LineEdit" name="beam_speed"/>
+    </item>
+    <item row="3" column="2">
+     <widget class="BodyLabel" name="label_13">
+      <property name="text">
+       <string>摆幅</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
+     <widget class="LineEdit" name="swing"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="BodyLabel" name="label_11">
+      <property name="text">
+       <string>边部停留时间</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="LineEdit" name="stay_time"/>
+    </item>
+    <item row="4" column="2" colspan="2">
+     <widget class="BodyLabel" name="label_10">
+      <property name="text">
+       <string>横梁匀速摆动时间</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4">
+     <widget class="LineEdit" name="constant_time"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="BodyLabel" name="label_12">
+      <property name="text">
+       <string>同粒度磨头数目</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="LineEdit" name="num"/>
+    </item>
+    <item row="5" column="2">
+     <widget class="BodyLabel" name="label_14">
+      <property name="text">
+       <string>均匀系数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="4">
+     <widget class="LineEdit" name="equal_coefficient"/>
+    </item>
+    <item row="6" column="0" colspan="10">
+     <widget class="QWidget" name="widget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 255);</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>834</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>PrimaryPushButton</class>
+   <extends>QPushButton</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+  <customwidget>
+   <class>BodyLabel</class>
+   <extends>QLabel</extends>
+   <header>qfluentwidgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
