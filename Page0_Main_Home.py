@@ -74,7 +74,7 @@ class Window(MSFluentWindow):
         self.navigationInterface.setCurrentItem(self.sync_calc_Interface.objectName())
 
     def initWindow(self):
-        self.resize(900, 700)
+        self.resize(800, 1000)
         self.setWindowIcon(QIcon('./images/kedalogo.png'))
         self.setWindowTitle('Copyright © 2024 科达制造股份有限公司')
 
