@@ -10,6 +10,9 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 from qfluentwidgets import PrimaryPushButton, LineEdit, BodyLabel, ImageLabel
 
 from Page4_Double_Generate_Animation import Animation_produce_equal, Animation_produce_order, Animation_produce_cross
+from Page4_Double_Middle_Line_Plot import middle_line_plot_equal, middle_line_plot_cross, middle_line_plot_order
+from Page4_Double_Polishing_Distribution_Simulation import Polishing_distribution_Thread_equal, \
+    Polishing_distribution_Thread_order, Polishing_distribution_Thread_cross
 
 
 class Page4_Double_Sim_Window(QFrame):
@@ -142,13 +145,14 @@ class Page4_Double_Sim_Window(QFrame):
         self.button_sync_swing_simulation = PrimaryPushButton(self.centralwidget)
         self.button_sync_swing_simulation.setObjectName(u"button_sync_swing_simulation")
         self.gridLayout.addWidget(self.button_sync_swing_simulation, 6, 3, 1, 3)
-        # self.Button_simulation_equal.clicked.connect(self.start_computation_Polishing_distribution_equal)  # 抛磨量分布仿真按钮
+        self.button_sync_swing_simulation.clicked.connect(
+            self.start_computation_Polishing_distribution_equal)  # 抛磨量分布仿真按钮
 
         # 同步摆轨迹中心线绘制
         self.button_sync_swing_middle_line = PrimaryPushButton(self.centralwidget)
         self.button_sync_swing_middle_line.setObjectName(u"button_sync_swing_middle_line")
         self.gridLayout.addWidget(self.button_sync_swing_middle_line, 6, 6, 1, 1)
-        # self.Button_middle_line_equal.clicked.connect(self.middle_line_figure_plot_equal)  # 磨头中心线绘制按钮
+        self.button_sync_swing_middle_line.clicked.connect(self.middle_line_figure_plot_equal)  # 磨头中心线绘制按钮
 
         # 顺序摆动画
         self.button_order_swing_animation = PrimaryPushButton(self.centralwidget)
@@ -161,36 +165,39 @@ class Page4_Double_Sim_Window(QFrame):
         self.button_order_swing_simulation = PrimaryPushButton(self.centralwidget)
         self.button_order_swing_simulation.setObjectName(u"button_order_swing_simulation")
         self.gridLayout.addWidget(self.button_order_swing_simulation, 7, 3, 1, 3)
-        # self.Button_simulation_order.clicked.connect(self.start_computation_Polishing_distribution_order)  # 抛磨量分布仿真按钮
+        self.button_order_swing_simulation.clicked.connect(
+            self.start_computation_Polishing_distribution_order)  # 抛磨量分布仿真按钮
 
         # 顺序摆轨迹中心线绘制
         self.button_order_swing_middle_line = PrimaryPushButton(self.centralwidget)
         self.button_order_swing_middle_line.setObjectName(u"button_order_swing_middle_line")
         self.gridLayout.addWidget(self.button_order_swing_middle_line, 7, 6, 1, 1)
-        # self.Button_middle_line_order.clicked.connect(self.middle_line_figure_plot_order)  # 磨头中心线绘制按钮
+        self.button_order_swing_middle_line.clicked.connect(self.middle_line_figure_plot_order)  # 磨头中心线绘制按钮
 
         # 交叉摆动画
         self.button_cross_swing_animation = PrimaryPushButton(self.centralwidget)
         self.button_cross_swing_animation.setObjectName(u"button_cross_swing_animation")
         self.gridLayout.addWidget(self.button_cross_swing_animation, 8, 2, 1, 1)
-        self.button_cross_swing_animation.clicked.connect(self.start_computation_trajectory_animation_cross)  # 动画按钮(交叉摆模式)
+        self.button_cross_swing_animation.clicked.connect(
+            self.start_computation_trajectory_animation_cross)  # 动画按钮(交叉摆模式)
 
         # 交叉抛磨量分布仿真
         self.button_cross_swing_simulation = PrimaryPushButton(self.centralwidget)
         self.button_cross_swing_simulation.setObjectName(u"button_cross_swing_simulation")
         self.gridLayout.addWidget(self.button_cross_swing_simulation, 8, 3, 1, 3)
-        # self.Button_simulation_cross.clicked.connect(self.start_computation_Polishing_distribution_cross)  # 抛磨量分布仿真按钮
+        self.button_cross_swing_simulation.clicked.connect(
+            self.start_computation_Polishing_distribution_cross)  # 抛磨量分布仿真按钮
 
         # 同步摆轨迹中心线绘制
         self.button_cross_swing_middle_line = PrimaryPushButton(self.centralwidget)
         self.button_cross_swing_middle_line.setObjectName(u"button_cross_swing_middle_line")
         self.gridLayout.addWidget(self.button_cross_swing_middle_line, 8, 6, 1, 1)
-        # self.Button_middle_line_cross.clicked.connect(self.middle_line_figure_plot_cross)  # 磨头中心线绘制按钮
+        self.button_cross_swing_middle_line.clicked.connect(self.middle_line_figure_plot_cross)  # 磨头中心线绘制按钮
 
         # 动画
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
-        self.widget.setStyleSheet(u"background-color: rgb(0, 170, 255);")
+        self.widget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.gridLayout.addWidget(self.widget, 9, 0, 1, 8)
 
         self.iconBottom = ImageLabel("./images/bottom2.png", self.centralwidget)
@@ -396,3 +403,142 @@ class Page4_Double_Sim_Window(QFrame):
         self.button_order_swing_animation.setEnabled(True)
         self.button_sync_swing_animation.setEnabled(True)
         self.button_cross_swing_animation.setEnabled(True)
+
+    # 抛磨量分布仿真子线程
+    def start_computation_Polishing_distribution_equal(self):  # 抛磨量分布仿真子线程
+        # 创建子线程
+        self.Polishing_distribution_thread = Polishing_distribution_Thread_equal(float(self.lineedit_belt_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_time.text()),
+                                                                                 float(self.lineedit_stay_time.text()),
+                                                                                 float(
+                                                                                     self.lineedit_accelerate_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_mod_between.text()),
+                                                                                 float(
+                                                                                     self.lineedit_between_beam.text()),
+                                                                                 math.ceil(float(
+                                                                                     self.lineedit_mod_count.text())),
+                                                                                 float(self.lineedit_radius.text()),
+                                                                                 float(self.lineedit_mode_size.text()))
+        self.Polishing_distribution_thread.result_ready.connect(self.Polishing_distribution_ready)
+        self.button_sync_swing_simulation.setEnabled(False)
+        self.button_order_swing_simulation.setEnabled(False)
+        self.button_cross_swing_simulation.setEnabled(False)
+
+        # 运行子线程
+        self.Polishing_distribution_thread.start()
+
+    def start_computation_Polishing_distribution_order(self):  # 抛磨量分布仿真子线程
+        # 创建子线程
+        self.Polishing_distribution_thread = Polishing_distribution_Thread_order(float(self.lineedit_belt_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_time.text()),
+                                                                                 float(self.lineedit_stay_time.text()),
+                                                                                 float(
+                                                                                     self.lineedit_accelerate_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_mod_between.text()),
+                                                                                 float(
+                                                                                     self.lineedit_between_beam.text()),
+                                                                                 math.ceil(float(
+                                                                                     self.lineedit_mod_count.text())),
+                                                                                 float(self.lineedit_radius.text()),
+                                                                                 float(self.lineedit_mode_size.text()),
+                                                                                 float(self.lineedit_delay_time.text()))
+        self.Polishing_distribution_thread.result_ready.connect(self.Polishing_distribution_ready)
+        self.button_sync_swing_simulation.setEnabled(False)
+        self.button_order_swing_simulation.setEnabled(False)
+        self.button_cross_swing_simulation.setEnabled(False)
+        # 运行子线程
+        self.Polishing_distribution_thread.start()
+
+    def start_computation_Polishing_distribution_cross(self):  # 抛磨量分布仿真子线程
+        # 创建子线程
+        self.Polishing_distribution_thread = Polishing_distribution_Thread_cross(float(self.lineedit_belt_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_beam_swing_time.text()),
+                                                                                 float(self.lineedit_stay_time.text()),
+                                                                                 float(
+                                                                                     self.lineedit_accelerate_speed.text()),
+                                                                                 float(
+                                                                                     self.lineedit_mod_between.text()),
+                                                                                 float(
+                                                                                     self.lineedit_between_beam.text()),
+                                                                                 math.ceil(float(
+                                                                                     self.lineedit_mod_count.text())),
+                                                                                 float(self.lineedit_radius.text()),
+                                                                                 float(self.lineedit_mode_size.text()))
+        self.Polishing_distribution_thread.result_ready.connect(self.Polishing_distribution_ready)
+        self.button_sync_swing_simulation.setEnabled(False)
+        self.button_order_swing_simulation.setEnabled(False)
+        self.button_cross_swing_simulation.setEnabled(False)
+
+        # 运行子线程
+        self.Polishing_distribution_thread.start()
+
+    def Polishing_distribution_ready(self, object_matrix, result):  # 子线程回调函数
+        # 在主线程中绘图
+        plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 设置微软雅黑字体
+        plt.rcParams['axes.unicode_minus'] = False  # 避免坐标轴不能正常的显示负号
+        fig = plt.figure('抛磨强度分布仿真')
+        ax = fig.add_subplot(111)
+        ax.set_aspect('equal', adjustable='box')
+        im = ax.contourf(object_matrix, 15, alpha=1, cmap='jet')
+        plt.xlabel('Tile feed direction')
+        plt.ylabel('Beam swing direction')
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="5%", pad=0.1)
+        plt.colorbar(im, cax=cax)
+        plt.show()  # 显示函数图像
+        # equal_coefficient
+        self.button_sync_swing_simulation.setEnabled(True)
+        self.button_order_swing_simulation.setEnabled(True)
+        self.button_cross_swing_simulation.setEnabled(True)
+
+    # 绘制磨头中心轨迹线
+    def middle_line_figure_plot_equal(self):
+        belt_speed = float(self.lineedit_belt_speed.text())
+        beam_speed = float(self.lineedit_beam_swing_speed.text())
+        constant_time = float(self.lineedit_beam_swing_time.text())
+        stay_time = float(self.lineedit_stay_time.text())
+        a_speed = float(self.lineedit_accelerate_speed.text())
+        num = math.ceil(float(self.lineedit_mod_count.text()))
+        between = float(self.lineedit_mod_between.text())
+        between_beam = float(self.lineedit_between_beam.text())
+        mid_var = middle_line_plot_equal(belt_speed, beam_speed, constant_time, stay_time, a_speed, num, between,
+                                         between_beam)
+        mid_var.figure_plot()
+
+    def middle_line_figure_plot_cross(self):
+        belt_speed = float(self.lineedit_belt_speed.text())
+        beam_speed = float(self.lineedit_beam_swing_speed.text())
+        constant_time = float(self.lineedit_beam_swing_time.text())
+        stay_time = float(self.lineedit_stay_time.text())
+        a_speed = float(self.lineedit_accelerate_speed.text())
+        num = math.ceil(float(self.lineedit_mod_count.text()))
+        between = float(self.lineedit_mod_between.text())
+        between_beam = float(self.lineedit_between_beam.text())
+        mid_var = middle_line_plot_cross(belt_speed, beam_speed, constant_time, stay_time, a_speed, num, between,
+                                         between_beam)
+        mid_var.figure_plot()
+
+    def middle_line_figure_plot_order(self):
+        belt_speed = float(self.lineedit_belt_speed.text())
+        beam_speed = float(self.lineedit_beam_swing_speed.text())
+        constant_time = float(self.lineedit_beam_swing_time.text())
+        stay_time = float(self.lineedit_stay_time.text())
+        a_speed = float(self.lineedit_accelerate_speed.text())
+        num = math.ceil(float(self.lineedit_mod_count.text()))
+        between = float(self.lineedit_mod_between.text())
+        between_beam = float(self.lineedit_between_beam.text())
+        delay_tome = float(self.lineedit_delay_time.text())
+        mid_var = middle_line_plot_order(belt_speed, beam_speed, constant_time, stay_time, a_speed, num, between,
+                                         between_beam, delay_tome)
+        mid_var.figure_plot()
