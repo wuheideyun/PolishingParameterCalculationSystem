@@ -15,6 +15,8 @@ from Page2_Sync_Sim_Window import Page2_Window_Sync_Sim
 from Page1_Sync_Calc_Window import Page1_Window_Sync_Calc
 from Page3_Double_Calc_Window import Page3_Double_Calc_Window
 from Page4_Double_Sim_Window import Page4_Double_Sim_Window
+from Page5_Single_Calc_Window import Page5_Single_Calc_Window
+from Page6_Single_Sim_Window import Page6_Single_Sim_Window
 
 
 class Widget(QFrame):
@@ -45,8 +47,8 @@ class Window(MSFluentWindow):
         self.sync_sim_Interface = Page2_Window_Sync_Sim('Sync Sim Interface', self)
         self.double_calc_Interface = Page3_Double_Calc_Window('Double Calc Interface', self)
         self.double_sim_Interface = Page4_Double_Sim_Window('Double Sim Interface', self)
-        self.single_calc_Interface = Page1_Window_Sync_Calc('Single Calc Interface', self)
-        self.single_sim_Interface = Page2_Window_Sync_Sim('Single Sim Interface', self)
+        self.single_calc_Interface = Page5_Single_Calc_Window('Single Calc Interface', self)
+        self.single_sim_Interface = Page6_Single_Sim_Window('Single Sim Interface', self)
 
         self.libraryInterface = Page2_Window_Sync_Sim('Library Interface', self)
         self.initNavigation()
@@ -58,7 +60,7 @@ class Window(MSFluentWindow):
         self.addSubInterface(self.double_calc_Interface, FIF.VIDEO, '双头摆计算')
         self.addSubInterface(self.double_sim_Interface, FIF.UP, '双头摆仿真')
         self.addSubInterface(self.single_calc_Interface, FIF.ZOOM, '单头摆计算')
-        self.addSubInterface(self.single_sim_Interface, FIF.ZOOM, '单头摆仿真')
+        self.addSubInterface(self.single_sim_Interface, FIF.EXPRESSIVE_INPUT_ENTRY, '单头摆仿真')
 
         self.addSubInterface(self.libraryInterface, FIF.BOOK_SHELF, '库', FIF.LIBRARY_FILL,
                              NavigationItemPosition.BOTTOM)
@@ -74,7 +76,7 @@ class Window(MSFluentWindow):
         self.navigationInterface.setCurrentItem(self.sync_calc_Interface.objectName())
 
     def initWindow(self):
-        self.resize(800, 1000)
+        self.resize(700, 1000)
         self.setWindowIcon(QIcon('./images/kedalogo.png'))
         self.setWindowTitle('Copyright © 2024 科达制造股份有限公司')
 

@@ -30,7 +30,7 @@ class LoginWindow(Window, Ui_Form):
 
         self.label.setScaledContents(False)
         self.setWindowTitle('Copyright © 2024 科达制造股份有限公司')
-        # self.setWindowIcon(QIcon("./images/kedalogo.jpg"))
+        # self.setWindowIcon(QIcon("./images/kedalogo2.jpg"))
         self.resize(1000, 650)
 
         self.windowEffect.setMicaEffect(self.winId(), isDarkMode=isDarkTheme())

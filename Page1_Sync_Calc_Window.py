@@ -33,7 +33,7 @@ class Page1_Window_Sync_Calc(QFrame):
 
         # 初始化所有控件（与原代码保持一致）
         # 磨头间距
-        self.iconHead = ImageLabel("./images/double2.png", self.centralwidget)
+        self.iconHead = ImageLabel("./images/equal_calc2.png", self.centralwidget)
         self.gridLayout.addWidget(self.iconHead, 0, 0, 1, 13)
 
         self.label_gap = BodyLabel(self.centralwidget)

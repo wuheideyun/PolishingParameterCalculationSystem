@@ -22,6 +22,7 @@ class Page2_Window_Sync_Sim(QFrame):
         super().__init__(parent=parent)
         self.settings = QSettings("config.ini", QSettings.IniFormat)  # 使用配置文件
 
+        self.customWidth = 150  # 自定义宽度
         self.hBoxLayout = QVBoxLayout(self)
         self.setObjectName(text.replace(' ', '-'))
 
@@ -32,139 +33,146 @@ class Page2_Window_Sync_Sim(QFrame):
         self.gridLayout.setObjectName(u"gridLayout")
 
         # 初始化所有控件（与原代码保持一致）
+        self.iconHead = ImageLabel("./images/equal_calc2.png", self.centralwidget)
+        self.gridLayout.addWidget(self.iconHead, 0, 0, 1, 10)
+
+
         self.label_gap = BodyLabel(self.centralwidget)
         self.label_gap.setObjectName(u"label_gap")
-
-        self.gridLayout.addWidget(self.label_gap, 0, 0, 1, 1)
-
+        self.gridLayout.addWidget(self.label_gap, 1, 1, 1, 1)
         self.lineedit_gap = LineEdit(self.centralwidget)
+        self.lineedit_gap.setFixedWidth(self.customWidth)
         self.lineedit_gap.setObjectName(u"lineedit_gap")
-
-        self.gridLayout.addWidget(self.lineedit_gap, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.lineedit_gap, 1, 2, 1, 1)
 
         self.label_size = BodyLabel(self.centralwidget)
         self.label_size.setObjectName(u"label_size")
 
-        self.gridLayout.addWidget(self.label_size, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_size, 1, 4, 1, 1)
 
         self.lineedit_size = LineEdit(self.centralwidget)
         self.lineedit_size.setObjectName(u"lineedit_size")
-
-        self.gridLayout.addWidget(self.lineedit_size, 0, 4, 1, 1)
+        self.lineedit_size.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_size, 1, 5, 1, 1)
 
         self.label_radius = BodyLabel(self.centralwidget)
         self.label_radius.setObjectName(u"label_radius")
 
-        self.gridLayout.addWidget(self.label_radius, 0, 5, 1, 1)
+        self.gridLayout.addWidget(self.label_radius, 1, 7, 1, 1)
 
         self.lineedit_radius = LineEdit(self.centralwidget)
         self.lineedit_radius.setObjectName(u"lineedit_radius")
-
-        self.gridLayout.addWidget(self.lineedit_radius, 0, 6, 1, 1)
+        self.lineedit_radius.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_radius, 1, 8, 1, 1)
 
         self.label_acc = BodyLabel(self.centralwidget)
         self.label_acc.setObjectName(u"label_acc")
 
-        self.gridLayout.addWidget(self.label_acc, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_acc, 2, 1, 1, 1)
 
         self.lineedit_acc = LineEdit(self.centralwidget)
         self.lineedit_acc.setObjectName(u"lineedit_acc")
-
-        self.gridLayout.addWidget(self.lineedit_acc, 1, 1, 1, 2)
+        self.lineedit_acc.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_acc, 2, 2, 1, 2)
 
         self.label_amount = BodyLabel(self.centralwidget)
         self.label_amount.setObjectName(u"label_amount")
 
-        self.gridLayout.addWidget(self.label_amount, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_amount, 2, 4, 1, 1)
 
         self.lineedit_amount = LineEdit(self.centralwidget)
         self.lineedit_amount.setObjectName(u"lineedit_amount")
-
-        self.gridLayout.addWidget(self.lineedit_amount, 1, 4, 1, 1)
+        self.lineedit_amount.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_amount, 2, 5, 1, 1)
 
         self.label_belt_speed = BodyLabel(self.centralwidget)
         self.label_belt_speed.setObjectName(u"label_belt_speed")
 
-        self.gridLayout.addWidget(self.label_belt_speed, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_belt_speed, 3, 1, 1, 1)
 
         self.lineedit_belt_speed = LineEdit(self.centralwidget)
         self.lineedit_belt_speed.setObjectName(u"lineedit_belt_speed")
-
-        self.gridLayout.addWidget(self.lineedit_belt_speed, 2, 1, 1, 2)
+        self.lineedit_belt_speed.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_belt_speed, 3, 2, 1, 2)
 
         self.label_stop_time = BodyLabel(self.centralwidget)
         self.label_stop_time.setObjectName(u"label_stop_time")
 
-        self.gridLayout.addWidget(self.label_stop_time, 2, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_stop_time, 3, 4, 1, 1)
 
         self.lineedit_stop_time = LineEdit(self.centralwidget)
         self.lineedit_stop_time.setObjectName(u"lineedit_stop_time")
+        self.lineedit_stop_time.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_stop_time, 3, 5, 1, 1)
 
-        self.gridLayout.addWidget(self.lineedit_stop_time, 2, 4, 1, 1)
+        self.label_coefficient = BodyLabel(self.centralwidget)
+        self.label_coefficient.setObjectName(u"label_coefficient")
+        self.gridLayout.addWidget(self.label_coefficient, 3, 7, 1, 1)
+        self.lineedit_coefficient = LineEdit(self.centralwidget)
+        self.lineedit_coefficient.setObjectName(u"lineedit_coefficient")
+        self.lineedit_coefficient.setEnabled(False)
+        self.lineedit_coefficient.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_coefficient, 3, 8, 1, 1)
 
         self.label_swing_speed = BodyLabel(self.centralwidget)
         self.label_swing_speed.setObjectName(u"label_swing_speed")
 
-        self.gridLayout.addWidget(self.label_swing_speed, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_swing_speed, 4, 1, 1, 1)
 
         self.lineedit_swing_speed = LineEdit(self.centralwidget)
         self.lineedit_swing_speed.setObjectName(u"lineedit_swing_speed")
-
-        self.gridLayout.addWidget(self.lineedit_swing_speed, 3, 1, 1, 2)
+        self.lineedit_swing_speed.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_swing_speed, 4, 2, 1, 2)
 
         self.label_swing_time = BodyLabel(self.centralwidget)
         self.label_swing_time.setObjectName(u"label_swing_time")
 
-        self.gridLayout.addWidget(self.label_swing_time, 3, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_swing_time, 4, 4, 1, 1)
 
         self.lineedit_swing_time = LineEdit(self.centralwidget)
         self.lineedit_swing_time.setObjectName(u"lineedit_swing_time")
-
-        self.gridLayout.addWidget(self.lineedit_swing_time, 3, 4, 1, 1)
-
-        self.label_coefficient = BodyLabel(self.centralwidget)
-        self.label_coefficient.setObjectName(u"label_coefficient")
-
-        self.gridLayout.addWidget(self.label_coefficient, 3, 5, 1, 1)
-
-        self.lineedit_coefficient = LineEdit(self.centralwidget)
-        self.lineedit_coefficient.setObjectName(u"lineedit_coefficient")
-        self.lineedit_coefficient.setEnabled(False)
-
-        self.gridLayout.addWidget(self.lineedit_coefficient, 3, 6, 1, 1)
+        self.lineedit_swing_time.setFixedWidth(self.customWidth)
+        self.gridLayout.addWidget(self.lineedit_swing_time, 4, 5, 1, 1)
 
         self.button_save = PrimaryPushButton(self.centralwidget)
         self.button_save.setObjectName(u"button_save")
-        self.gridLayout.addWidget(self.button_save, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.button_save, 4, 7, 1, 1)
+
+        # 中间图标
+        self.iconCenter = ImageLabel("./images/middle2.png", self.centralwidget)
+        self.gridLayout.addWidget(self.iconCenter, 5, 0, 1, 10)
+
 
         self.button_animation = PrimaryPushButton(self.centralwidget)
         self.button_animation.setObjectName(u"button_animation")
 
-        self.gridLayout.addWidget(self.button_animation, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.button_animation, 6, 3, 1, 1)
 
         self.button_middle_line = PrimaryPushButton(self.centralwidget)
         self.button_middle_line.setObjectName(u"button_middle_line")
 
-        self.gridLayout.addWidget(self.button_middle_line, 4, 3, 1, 1)
+        self.gridLayout.addWidget(self.button_middle_line, 6, 4, 1, 1)
 
         self.button_simulation = PrimaryPushButton(self.centralwidget)
         self.button_simulation.setObjectName(u"button_simulation")
 
-        self.gridLayout.addWidget(self.button_simulation, 4, 4, 1, 1)
+        self.gridLayout.addWidget(self.button_simulation, 6, 5, 1, 1)
 
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
         self.widget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.gridLayout.addWidget(self.widget, 7, 0, 1, 7)
 
-        self.gridLayout.addWidget(self.widget, 5, 0, 1, 7)
+        self.iconBottom = ImageLabel("./images/bottom2.png", self.centralwidget)
+        self.gridLayout.addWidget(self.iconBottom, 8, 0, 1, 10)
 
         self.retranslateUi(self.centralwidget)
         self.menubar = QMenuBar(self)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 940, 22))
 
-        self.iconLabel = ImageLabel("./images/double3.png", self.centralwidget)
-        self.hBoxLayout.addWidget(self.iconLabel)
+        # self.iconLabel = ImageLabel("./images/double3.png", self.centralwidget)
+        # self.hBoxLayout.addWidget(self.iconLabel)
         self.hBoxLayout.addWidget(self.centralwidget)
 
         self.retranslateUi(self.centralwidget)
