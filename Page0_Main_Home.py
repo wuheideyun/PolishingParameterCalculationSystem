@@ -25,6 +25,7 @@ class Widget(QFrame):
         super().__init__(parent=parent)
         # self.label = SubtitleLabel(text, self)
         self.hBoxLayout = QHBoxLayout(self)
+        
 
         # 配置文件路径
         self.config_file = "config.json"
