@@ -139,26 +139,27 @@ class Animation_produce(QThread):
         self.R=R
         self.between=between
         self.num=math.ceil(num)
-        self.n=4
+        self.n=6
         self.msize=0.15
         period = round(4 * (v2 / a) + 2 * t1 + 2 * t2, 2)
         self.all_time_n = math.floor(period / self.msize) * self.n
-        self.color_7 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple']  # 红橙黄绿青蓝紫
+        self.color_7 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen','slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
         # 计算矩阵
         self.single_X_location,self.single_Y_location=self.inner_cal_matrix()
         # 创建坐标绘图区
         self.fig = plt.figure('运行轨迹动画',figsize=(10, 4))
         self.ax = self.fig.add_subplot(111)  # 默认111代表1*1的图的第一个子图
         # 设置坐标轴范围
-        self.x_range = [-(30 + R) - period * (self.n-1) * v1, (num - 1) * between + 200]
+        self.x_range = [-(self.num * between + 400), period * 4 * v1]
         self.ax.set_xlim(self.x_range)
-        self.ax.set_ylim((-0.5 * (a * (v2 / a) ** 2 + v2 * t2) - R - 200,
-                          0.5 * (a * (v2 / a) ** 2 + v2 * t1) + R + 800))
+        # y轴使用系数扩展显示范围
+        self.y_range = [-0.5 * 1.3 * ((a * (v2 / a) ** 2 + v2 * t1) + 2 * R),
+                        0.5 * 2.3 * ((a * (v2 / a) ** 2 + v2 * t1) + 2 * R)]
+        self.ax.set_ylim(self.y_range)
         self.ax.set_aspect('equal', adjustable='box')
         # 设置坐标轴名称
         self.ax.set_xlabel('Tile feed direction')
         self.ax.set_ylabel('Beam swing direction')
-        self.x_range_numtext = 0
         self.one_size=self.msize * self.v1
         # 标识符位置设定
         self.grinding_num = self.ax.text(0.7,0.92,'',transform=self.ax.transAxes,fontsize=10,)
@@ -170,7 +171,6 @@ class Animation_produce(QThread):
         constant_t=self.t1
         motionless_t=self.t2
         a=self.a
-        between=self.between
         msize=self.msize
         accelerate_t = round(v2 / a, 2)
         t1=accelerate_t
@@ -183,8 +183,7 @@ class Animation_produce(QThread):
         t8=motionless_t
         period=4*accelerate_t+2*motionless_t+2*constant_t
         # 正式计算
-        n=4
-        between_cell=math.floor(between/v1/msize)    # 间距步长
+        n=self.n
         time=np.arange(0,period,msize)               # 时间变量
         T_size=math.floor(period/msize)              # 单周期步长
         # 磨头中心坐标
@@ -238,18 +237,23 @@ class Animation_produce(QThread):
         return single_X_location, single_Y_location
     def update(self,i):
         # 设置坐标轴移动
-        self.x_range[0] += self.one_size
-        self.x_range[1] += self.one_size
+        self.x_range[0] -= self.one_size
+        self.x_range[1] -= self.one_size
         self.ax.set_xlim(self.x_range)
         # 绘制x、y、num的标识(坐标信息相对不移动)
         self.grinding_num.set_text('Same_grinding_num=%.0f' % self.num)
-        self.xtext_ani.set_text('x_location=%.3f mm' % (self.single_X_location[0, i]))
-        self.ytext_ani.set_text('y_location=%.3f mm' % (self.single_Y_location[0, i] - 0.5 * (self.v2 ** 2 / self.a + self.v2 * self.t1)))
+        self.xtext_ani.set_text('x_location=%.3f mm' % (-self.single_X_location[0, i]))
+        self.ytext_ani.set_text(
+            'y_location=%.3f mm' % (self.single_Y_location[0, i] - 0.5 * (self.v2 ** 2 / self.a + self.v2 * self.t1)))
         # 绘制抛光轨迹进行叠加
-        for j in range(0,self.num):
-            circle = Circle(xy=(self.single_X_location[0,i]+j*self.between,
-                   self.single_Y_location[0,i]-0.5*(self.v2**2/self.a+self.v2*self.t1)), radius=self.R, alpha=0.1, color=self.color_7[j])
+        patches = []
+        for j in range(0, self.num):
+            circle = Circle(xy=(-(self.single_X_location[0, i] + j * self.between),
+                                self.single_Y_location[0, i] - 0.5 * (self.v2 ** 2 / self.a + self.v2 * self.t1)),
+                            radius=self.R, alpha=0.1, color=self.color_7[j])
             self.ax.add_patch(circle)
+            patches.append(circle)
+        return [self.grinding_num, self.xtext_ani, self.ytext_ani] + patches
     def run(self):
         ani = animation.FuncAnimation(self.fig,self.update,frames=self.all_time_n,interval=100, repeat=False)
         ani.save('animation2.gif', fps=30, writer='pillow')
