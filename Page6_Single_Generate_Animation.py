@@ -7,9 +7,10 @@ import time as te
 from PySide6.QtCore import QThread, Signal
 class Animation_produce_cross(QThread):
     result_ready = Signal(str)
-    def __init__(self,v1, v2, t1, t2, a, R,beam_between,num):
+    def __init__(self,v1, v2, t1, t2, a, R,beam_between,num,animation_name):
         # 参数赋值
         super().__init__()
+        self.animation_name = animation_name
         self.v1=v1
         self.v2=v2
         self.t1=t1
@@ -141,15 +142,16 @@ class Animation_produce_cross(QThread):
             self.ax.add_patch(circle_1)
     def run(self):
         ani = animation.FuncAnimation(self.fig,self.update,frames=self.all_time_n_1,interval=100, repeat=False)
-        ani.save('animation.gif', fps=30, writer='pillow')
-        self.result_ready.emit('动画保存成功')
+        ani.save('animation/' + self.animation_name + '.gif', fps=30, writer='pillow')
+        self.result_ready.emit(self.animation_name)
         plt.close(self.fig)
 
 class Animation_produce_order(QThread):
     result_ready = Signal(str)
-    def __init__(self,v1,v2,t1,t2,a,R,beam_between,num,delay_time):
+    def __init__(self,v1,v2,t1,t2,a,R,beam_between,num,delay_time,animation_name):
         # 参数赋值
         super().__init__()
+        self.animation_name = animation_name
         self.v1=v1
         self.v2=v2
         self.t1=t1
@@ -280,15 +282,16 @@ class Animation_produce_order(QThread):
                 self.ax.add_patch(circle_1)
     def run(self):
         ani = animation.FuncAnimation(self.fig,self.update,frames=self.all_time_n,interval=100, repeat=False)
-        ani.save('animation.gif', fps=30, writer='pillow')
-        self.result_ready.emit('动画保存成功')
+        ani.save('animation/' + self.animation_name + '.gif', fps=30, writer='pillow')
+        self.result_ready.emit(self.animation_name)
         plt.close(self.fig)
 
 class Animation_produce_equal(QThread):
     result_ready = Signal(str)
-    def __init__(self,v1, v2, t1, t2, a, R,beam_between,num):
+    def __init__(self,v1, v2, t1, t2, a, R,beam_between,num,animation_name):
         # 参数赋值
         super().__init__()
+        self.animation_name = animation_name
         self.v1=v1
         self.v2=v2
         self.t1=t1
@@ -417,15 +420,16 @@ class Animation_produce_equal(QThread):
             self.ax.add_patch(circle_1)
     def run(self):
         ani = animation.FuncAnimation(self.fig,self.update,frames=self.all_time_n_1,interval=100, repeat=False)
-        ani.save('animation.gif', fps=30, writer='pillow')
-        self.result_ready.emit('动画保存成功')
+        ani.save('animation/' + self.animation_name + '.gif', fps=30, writer='pillow')
+        self.result_ready.emit(self.animation_name)
         plt.close(self.fig)
 
 class Animation_produce_order_define(QThread):
     result_ready = Signal(str)
-    def __init__(self,v1,v2,t1,t2,a,R,between,beam_between,num,delay_time,group):
+    def __init__(self,v1,v2,t1,t2,a,R,between,beam_between,num,delay_time,group,animation_name):
         # 参数赋值
         super().__init__()
+        self.animation_name = animation_name
         self.v1=v1
         self.v2=v2
         self.t1=t1
@@ -563,6 +567,6 @@ class Animation_produce_order_define(QThread):
                 self.ax.add_patch(circle_1)
     def run(self):
         ani = animation.FuncAnimation(self.fig,self.update,frames=self.all_time_n,interval=100, repeat=False)
-        ani.save('animation.gif', fps=30, writer='pillow')
-        self.result_ready.emit('动画保存成功')
+        ani.save('animation/' + self.animation_name + '.gif', fps=30, writer='pillow')
+        self.result_ready.emit(self.animation_name)
         plt.close(self.fig)

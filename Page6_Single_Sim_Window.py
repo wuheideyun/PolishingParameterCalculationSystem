@@ -355,62 +355,116 @@ class Page6_Single_Sim_Window(QFrame):
         super().closeEvent(event)
 
     def start_computation_trajectory_animation_equal(self):
-        self.trajectory_animation_thread = Animation_produce_equal(float(self.lineEdit_belt_speed.text()),
-                                                                   float(self.lineEdit_beam_swing_speed.text()),
-                                                                   float(self.lineEdit_beam_constant_time.text()),
-                                                                   float(self.lineEdit_stay_time.text()),
-                                                                   float(self.lineEdit_accelerate.text()),
-                                                                   float(self.lineEdit_radius.text()),
-                                                                   float(self.lineEdit_beam_between.text()),
-                                                                   math.ceil(float(self.lineEdit_num.text())),
-                                                                   )
-        self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
-        self.button_animation_equal.setEnabled(False)
-        self.button_animation_order.setEnabled(False)
-        self.button_animation_cross.setEnabled(False)
-        # 运行子线程
-        self.trajectory_animation_thread.start()
+        animation_name = ('SingleCalcAnimation-Equal-' +
+                          self.lineEdit_beam_between.text() + '_' +
+                          self.lineEdit_grind_size.text() + '_' +
+                          self.lineEdit_belt_speed.text() + '_' +
+                          self.lineEdit_beam_constant_time.text() + '_' +
+                          self.lineEdit_radius.text() + '_' +
+                          self.lineEdit_ceramic_width.text() + '_' +
+                          self.lineEdit_beam_swing_speed.text() + '_' +
+                          self.lineEdit_stay_time.text() + '_' +
+                          self.lineEdit_delay_time.text() + '_' +
+                          self.lineEdit_accelerate.text() + '_' +
+                          self.lineEdit_num.text() + '_' +
+                          self.lineEdit_coefficient.text())
+
+        if not self.check_animation_gif(animation_name):
+            self.trajectory_animation_thread = Animation_produce_equal(float(self.lineEdit_belt_speed.text()),
+                                                                       float(self.lineEdit_beam_swing_speed.text()),
+                                                                       float(self.lineEdit_beam_constant_time.text()),
+                                                                       float(self.lineEdit_stay_time.text()),
+                                                                       float(self.lineEdit_accelerate.text()),
+                                                                       float(self.lineEdit_radius.text()),
+                                                                       float(self.lineEdit_beam_between.text()),
+                                                                       math.ceil(float(self.lineEdit_num.text())),
+                                                                       animation_name
+                                                                       )
+            self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
+            self.button_animation_equal.setEnabled(False)
+            self.button_animation_order.setEnabled(False)
+            self.button_animation_cross.setEnabled(False)
+            # 运行子线程
+            self.trajectory_animation_thread.start()
+        else:
+            self.trajectory_animation_ready(animation_name)
 
     # 轨迹动画生成子线程
     def start_computation_trajectory_animation_cross(self):
-        self.trajectory_animation_thread = Animation_produce_cross(float(self.lineEdit_belt_speed.text()),
-                                                                   float(self.lineEdit_beam_swing_speed.text()),
-                                                                   float(self.lineEdit_beam_constant_time.text()),
-                                                                   float(self.lineEdit_stay_time.text()),
-                                                                   float(self.lineEdit_accelerate.text()),
-                                                                   float(self.lineEdit_radius.text()),
-                                                                   float(self.lineEdit_beam_between.text()),
-                                                                   math.ceil(float(self.lineEdit_num.text())),
-                                                                   )
-        self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
-        self.button_animation_equal.setEnabled(False)
-        self.button_animation_order.setEnabled(False)
-        self.button_animation_cross.setEnabled(False)
-        # 运行子线程
-        self.trajectory_animation_thread.start()
+        animation_name = ('SingleCalcAnimation-Cross-' +
+                          self.lineEdit_beam_between.text() + '_' +
+                          self.lineEdit_grind_size.text() + '_' +
+                          self.lineEdit_belt_speed.text() + '_' +
+                          self.lineEdit_beam_constant_time.text() + '_' +
+                          self.lineEdit_radius.text() + '_' +
+                          self.lineEdit_ceramic_width.text() + '_' +
+                          self.lineEdit_beam_swing_speed.text() + '_' +
+                          self.lineEdit_stay_time.text() + '_' +
+                          self.lineEdit_delay_time.text() + '_' +
+                          self.lineEdit_accelerate.text() + '_' +
+                          self.lineEdit_num.text() + '_' +
+                          self.lineEdit_coefficient.text())
+
+        if not self.check_animation_gif(animation_name):
+            self.trajectory_animation_thread = Animation_produce_cross(float(self.lineEdit_belt_speed.text()),
+                                                                       float(self.lineEdit_beam_swing_speed.text()),
+                                                                       float(self.lineEdit_beam_constant_time.text()),
+                                                                       float(self.lineEdit_stay_time.text()),
+                                                                       float(self.lineEdit_accelerate.text()),
+                                                                       float(self.lineEdit_radius.text()),
+                                                                       float(self.lineEdit_beam_between.text()),
+                                                                       math.ceil(float(self.lineEdit_num.text())),
+                                                                       animation_name
+                                                                       )
+            self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
+            self.button_animation_equal.setEnabled(False)
+            self.button_animation_order.setEnabled(False)
+            self.button_animation_cross.setEnabled(False)
+            # 运行子线程
+            self.trajectory_animation_thread.start()
+        else:
+            self.trajectory_animation_ready(animation_name)
 
     def start_computation_trajectory_animation_order(self):
-        self.trajectory_animation_thread = Animation_produce_order(float(self.lineEdit_belt_speed.text()),
-                                                                   float(self.lineEdit_beam_swing_speed.text()),
-                                                                   float(self.lineEdit_beam_constant_time.text()),
-                                                                   float(self.lineEdit_stay_time.text()),
-                                                                   float(self.lineEdit_accelerate.text()),
-                                                                   float(self.lineEdit_radius.text()),
-                                                                   float(self.lineEdit_beam_between.text()),
-                                                                   math.ceil(float(self.lineEdit_num.text())),
-                                                                   float(self.lineEdit_delay_time.text())
-                                                                   )
-        self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
-        self.button_animation_equal.setEnabled(False)
-        self.button_animation_order.setEnabled(False)
-        self.button_animation_cross.setEnabled(False)
-        # 运行子线程
-        self.trajectory_animation_thread.start()
+        animation_name = ('SingleCalcAnimation-Order-' +
+                          self.lineEdit_beam_between.text() + '_' +
+                          self.lineEdit_grind_size.text() + '_' +
+                          self.lineEdit_belt_speed.text() + '_' +
+                          self.lineEdit_beam_constant_time.text() + '_' +
+                          self.lineEdit_radius.text() + '_' +
+                          self.lineEdit_ceramic_width.text() + '_' +
+                          self.lineEdit_beam_swing_speed.text() + '_' +
+                          self.lineEdit_stay_time.text() + '_' +
+                          self.lineEdit_delay_time.text() + '_' +
+                          self.lineEdit_accelerate.text() + '_' +
+                          self.lineEdit_num.text() + '_' +
+                          self.lineEdit_coefficient.text())
 
-    def trajectory_animation_ready(self, str_22):
+        if not self.check_animation_gif(animation_name):
+            self.trajectory_animation_thread = Animation_produce_order(float(self.lineEdit_belt_speed.text()),
+                                                                       float(self.lineEdit_beam_swing_speed.text()),
+                                                                       float(self.lineEdit_beam_constant_time.text()),
+                                                                       float(self.lineEdit_stay_time.text()),
+                                                                       float(self.lineEdit_accelerate.text()),
+                                                                       float(self.lineEdit_radius.text()),
+                                                                       float(self.lineEdit_beam_between.text()),
+                                                                       math.ceil(float(self.lineEdit_num.text())),
+                                                                       float(self.lineEdit_delay_time.text()),
+                                                                       animation_name
+                                                                       )
+            self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
+            self.button_animation_equal.setEnabled(False)
+            self.button_animation_order.setEnabled(False)
+            self.button_animation_cross.setEnabled(False)
+            # 运行子线程
+            self.trajectory_animation_thread.start()
+        else:
+            self.trajectory_animation_ready(animation_name)
+
+    def trajectory_animation_ready(self, animation_name):
         # 加载GIF动画
-        print(str_22)
-        self.movie = QMovie("animation.gif")
+        print(animation_name)
+        self.movie = QMovie('./animation/' + animation_name + '.gif')
         # self.movie.setloopCount(1)  # 设置只播放一次
         self.label_gif.setMovie(self.movie)
         self.movie.start()
@@ -558,3 +612,10 @@ class Page6_Single_Sim_Window(QFrame):
         mid_var = middle_line_plot_order(belt_speed, beam_speed, constant_time, stay_time, a_speed, num,
                                          between_beam, delay_time)
         mid_var.figure_plot()
+
+    def check_animation_gif(self, animation_name):
+        # 定义文件路径
+        file_path = os.path.join(os.getcwd(), 'animation', animation_name + '.gif')
+
+        # 判断文件是否存在
+        return os.path.isfile(file_path)

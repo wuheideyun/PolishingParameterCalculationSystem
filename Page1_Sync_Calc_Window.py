@@ -404,6 +404,8 @@ class Page1_Window_Sync_Calc(QFrame):
 
     # 轨迹参数计算（节能计算）
     def energy_calculate(self):
+        if not self.on_button_clicked():
+            return
         v1 = float(self.lineedit_belt_speed.text())
         ceramic_width = float(self.lineedit_width.text())
         between = float(self.lineedit_gap.text())
@@ -423,6 +425,8 @@ class Page1_Window_Sync_Calc(QFrame):
 
     # 轨迹参数计算（高效计算）
     def efficient_calculate(self):  # 高效计算
+        if not self.on_button_clicked():
+            return
         v1 = float(self.lineedit_belt_speed.text())
         ceramic_width = float(self.lineedit_width.text())
         between = float(self.lineedit_gap.text())

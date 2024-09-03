@@ -49,7 +49,7 @@ class LoginWindow(Window, Ui_Form):
 
         desktop = QApplication.screens()[0].availableGeometry()
         w, h = desktop.width(), desktop.height()
-        self.move(w//2 - self.width()//2, h//2 - self.height()//2)
+        self.move(w // 2 - self.width() // 2, h // 2 - self.height() // 2)
 
     def resizeEvent(self, e):
         super().resizeEvent(e)

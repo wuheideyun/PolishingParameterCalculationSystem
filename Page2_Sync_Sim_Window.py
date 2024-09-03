@@ -161,7 +161,7 @@ class Page2_Window_Sync_Sim(QFrame):
         self.widget = QWidget(self.centralwidget)
         self.widget.setObjectName(u"widget")
         self.widget.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.gridLayout.addWidget(self.widget, 7, 0, 1, 7)
+        self.gridLayout.addWidget(self.widget, 7, 0, 1, 10)
 
         self.iconBottom = ImageLabel("./images/bottom2.png", self.centralwidget)
         self.gridLayout.addWidget(self.iconBottom, 8, 0, 1, 10)
