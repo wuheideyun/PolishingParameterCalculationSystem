@@ -10,7 +10,7 @@ def equal_num_calculate(v1,ceramic_width,between,R,overlap,a,beam_speed_up):
     else:
         v2 = beam_speed_up
     # 中间计算(边部停留时长为单倍磨头间距)
-    B = (ceramic_width + 200) - 2 * R                    # 摆幅（要求两极限位置各伸出100mm）
+    B = (ceramic_width + 120) - 2 * R                    # 摆幅（要求两极限位置各伸出60mm）
     t1_ = v2 / a                             # 加速时间
     t2_ = (B - a * t1_ ** 2) / v2            # 匀速时间
     t3_ = between / v1                       # 边部停留时长

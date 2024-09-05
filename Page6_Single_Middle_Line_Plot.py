@@ -12,6 +12,7 @@ class middle_line_plot_equal():
         self.a = a
         self.num = num
         self.beam_between=beam_between
+        self.n=3
     def inner_calculate(self):
         # 参数赋值
         v1 = self.v1
@@ -30,7 +31,7 @@ class middle_line_plot_equal():
         t8 = motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         # 正式计算
-        n = 3
+        n = self.n
         msize = 0.01
         time = np.arange(0, period, msize)  # 时间变量
         T_size = math.floor(period / msize)  # 单周期步长
@@ -85,36 +86,32 @@ class middle_line_plot_equal():
         return single_X_location,single_Y_location
     def figure_plot(self):
         msize = 0.01
-        n=3
+        n=self.n
         accelerate_t=self.v2/self.a
         constant_t=self.constant_t
         motionless_t=self.motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         T_size = math.floor(period / msize)  # 单周期步长
         single_X_location, single_Y_location=self.inner_calculate()
-        all_time_n = T_size * n
         # 设置图层属性
         fig=plt.figure('磨头中心轨迹曲线',figsize=(10,4))
-        #fig.suptitle('磨头中心轨迹曲线')
         ax=fig.add_subplot(111)
         ax.set_xlim((-200,period * 3 * self.v1+self.beam_between))
         ax.set_ylim((-200, self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 600))
         ax.set_aspect('equal', adjustable='box')
         # 设置图片文本
-        ani_text = ax.text(period * 2 * self.v1,
-                           self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 200, '', fontsize=10)
+        ani_text = ax.text(0.7, 0.82, '', transform=ax.transAxes, fontsize=10)
         ani_text.set_text('Same_grinding_num=%.0f' % self.num)
         # 设置坐标轴名称
         plt.xlabel('Tile feed direction')
         plt.ylabel('Beam swing direction')
-        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen','slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
+        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow',
+                   'lightgreen','slategrey','cornflowerblue','navy','indigo','violet',
+                   'plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
         for i in range(0, self.num):
-            #plt.scatter(single_X_location[0, 0:all_time_n - i * between_cell] + i * self.between,
-            #            single_Y_location[0, 0:all_time_n - i * between_cell], s=1)
-            plt.scatter(single_X_location+ i * self.beam_between,single_Y_location,color=color_7[i])
-            #plt.scatter(single_X_location + i * self.between_beam + self.between,single_Y_location,color=color_7[i])
+            plt.scatter(single_X_location+ i * self.beam_between,single_Y_location,
+                        color=color_7[i],s=1)
         plt.show()  # 显示函数图像
-
 class middle_line_plot_cross():
     def __init__(self,v1,v2,t1,t2,a,num,beam_between):
         # 变量输入
@@ -125,6 +122,7 @@ class middle_line_plot_cross():
         self.a = a
         self.num = num
         self.beam_between=beam_between
+        self.n=8
     def inner_calculate(self):
         # 参数赋值
         v1 = self.v1
@@ -143,7 +141,7 @@ class middle_line_plot_cross():
         t8 = motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         # 正式计算
-        n = 8
+        n = self.n
         self.msize = 0.01
         msize=self.msize
         time = np.arange(0, period, msize)  # 时间变量
@@ -200,14 +198,13 @@ class middle_line_plot_cross():
         return single_X_location,single_Y_location
     def figure_plot(self):
         msize = 0.01
-        n=8
+        n=self.n
         accelerate_t=self.v2/self.a
         constant_t=self.constant_t
         motionless_t=self.motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         T_size = math.floor(period / msize)  # 单周期步长
         single_X_location, single_Y_location=self.inner_calculate()
-        all_time_n = T_size * n
         # 设置图层属性
         fig=plt.figure('磨头中心轨迹曲线',figsize=(10,4))
         #fig.suptitle('磨头中心轨迹曲线')
@@ -216,23 +213,25 @@ class middle_line_plot_cross():
         ax.set_ylim((-200, self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 600))
         ax.set_aspect('equal', adjustable='box')
         # 设置图片文本
-        ani_text = ax.text(period * 2 * self.v1,
-                           self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 200, '', fontsize=10)
+        ani_text = ax.text(0.7, 0.82, '', transform=ax.transAxes, fontsize=10)
         ani_text.set_text('Same_grinding_num=%.0f' % self.num)
         # 设置坐标轴名称
         plt.xlabel('Tile feed direction')
         plt.ylabel('Beam swing direction')
-        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen','slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
+        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow',
+                   'lightgreen','slategrey','cornflowerblue','navy','indigo',
+                   'violet','plum','oldlace','maroon','lightcyan','lightseagreen',
+                   'seagreen','springgreen']  # 红橙黄绿青蓝紫
         for i in range(0, self.num):
             if (i+2) % 2 == 0:
                 ax.scatter(single_X_location[0, 0:self.all_time_n-1] + i * self.beam_between,
                 single_Y_location[0,0:self.all_time_n-1],
-                color=color_7[i])
+                color=color_7[i],s=1)
             # 横梁数为偶数
             else:
                 ax.scatter(single_X_location[0,0:self.all_time_n-self.cross_size] + i * self.beam_between,
                 single_Y_location[0,self.cross_size-1:self.all_time_n-1],
-                color=color_7[i])
+                color=color_7[i],s=1)
         plt.show()  # 显示函数图像
 
 class middle_line_plot_order():
@@ -246,6 +245,7 @@ class middle_line_plot_order():
         self.num = num
         self.beam_between =beam_between
         self.delay_time = delay_time
+        self.n=3
     def inner_calculate(self):
         # 参数赋值
         v1 = self.v1
@@ -264,7 +264,7 @@ class middle_line_plot_order():
         t8 = motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         # 正式计算
-        n = 3
+        n = self.n
         self.msize = 0.01
         msize = self.msize
         time = np.arange(0, period, msize)  # 时间变量
@@ -319,38 +319,35 @@ class middle_line_plot_order():
             single_X_location[0, i * T_size:(i + 1) * T_size] = X_location + period * v1 * i
             single_Y_location[0, i * T_size:(i + 1) * T_size] = Y_location
         return single_X_location, single_Y_location
-
     def figure_plot(self):
         msize = 0.01
-        n = 3
+        n = self.n
         accelerate_t = self.v2 / self.a
         constant_t = self.constant_t
         motionless_t = self.motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         T_size = math.floor(period / msize)  # 单周期步长
         single_X_location, single_Y_location = self.inner_calculate()
-        all_time_n = T_size * n
         # 设置图层属性
         fig = plt.figure('磨头中心轨迹曲线', figsize=(10, 4))
-        # fig.suptitle('磨头中心轨迹曲线')
         ax = fig.add_subplot(111)
         ax.set_xlim((-200, period * 3 * self.v1 + self.beam_between))
         ax.set_ylim((-200, self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 600))
         ax.set_aspect('equal', adjustable='box')
         # 设置图片文本
-        ani_text = ax.text(period * 2 * self.v1,
-                           self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 200, '', fontsize=10)
+        ani_text = ax.text(0.7, 0.82, '', transform=ax.transAxes, fontsize=10)
         ani_text.set_text('Same_grinding_num=%.0f' % self.num)
         # 设置坐标轴名称
         plt.xlabel('Tile feed direction')
         plt.ylabel('Beam swing direction')
-        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow']  # 红橙黄绿青蓝紫
+        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen',
+                        'slategrey', 'cornflowerblue', 'navy', 'indigo', 'violet', 'plum', 'oldlace', 'maroon',
+                        'lightcyan', 'lightseagreen', 'seagreen', 'springgreen']  # 红橙黄绿青蓝紫
         for i in range(0, self.num):
                 ax.scatter(single_X_location[0, 0:self.all_time_n-1] + i * self.beam_between - i*self.delay_time*self.v1,
                            single_Y_location[0, 0:self.all_time_n-1],
-                           color=color_7[i])
+                           color=color_7[i],s=1)
         plt.show()  # 显示函数图像
-
 class middle_line_plot_self_define_order():
     def __init__(self, v1, v2, t1, t2, a, num, beam_between,delay_time,group):
         # 变量输入
@@ -363,6 +360,7 @@ class middle_line_plot_self_define_order():
         self.beam_between = beam_between
         self.delay_time = delay_time
         self.group=math.floor(group)
+        self.n=3
     def inner_calculate(self):
         # 参数赋值
         v1 = self.v1
@@ -381,7 +379,7 @@ class middle_line_plot_self_define_order():
         t8 = motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         # 正式计算
-        n = 3
+        n = self.n
         self.msize = 0.01
         msize = self.msize
         time = np.arange(0, period, msize)  # 时间变量
@@ -436,17 +434,15 @@ class middle_line_plot_self_define_order():
             single_X_location[0, i * T_size:(i + 1) * T_size] = X_location + period * v1 * i
             single_Y_location[0, i * T_size:(i + 1) * T_size] = Y_location
         return single_X_location, single_Y_location
-
     def figure_plot(self):
         msize = 0.01
-        n = 3
+        n = self.n
         accelerate_t = self.v2 / self.a
         constant_t = self.constant_t
         motionless_t = self.motionless_t
         period = 4 * accelerate_t + 2 * motionless_t + 2 * constant_t
         T_size = math.floor(period / msize)  # 单周期步长
         single_X_location, single_Y_location = self.inner_calculate()
-        all_time_n = T_size * n
         # 设置图层属性
         fig = plt.figure('磨头中心轨迹曲线', figsize=(10, 4))
         # fig.suptitle('磨头中心轨迹曲线')
@@ -455,17 +451,18 @@ class middle_line_plot_self_define_order():
         ax.set_ylim((-200, self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 600))
         ax.set_aspect('equal', adjustable='box')
         # 设置图片文本
-        ani_text = ax.text(period * 2 * self.v1,
-                           self.a * (self.v2 / self.a) ** 2 + self.v2 * self.constant_t + 200, '', fontsize=10)
+        ani_text = ax.text(0.7, 0.82, '', transform=ax.transAxes, fontsize=10)
         ani_text.set_text('Same_grinding_num=%.0f' % (self.num*self.group))
         # 设置坐标轴名称
         plt.xlabel('Tile feed direction')
         plt.ylabel('Beam swing direction')
-        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen','slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
+        color_7 = ['red', 'orange', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen',
+                   'slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon',
+                   'lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
         self_delay_distance=(self.beam_between-self.delay_time*self.v1)/self.group
         for i in range(0,self.group):
             for j in range(0, self.num):
                 ax.scatter(single_X_location[0, 0:self.all_time_n-1] + j * self.beam_between - j*self.delay_time*self.v1 + self_delay_distance*i,
                            single_Y_location[0, 0:self.all_time_n-1],
-                           color=color_7[i+j])
+                           color=color_7[i+j],s=1)
         plt.show()  # 显示函数图像

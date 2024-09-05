@@ -377,6 +377,8 @@ class Page4_Double_Sim_Window(QFrame):
                                                                        )
             self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
             self.button_sync_swing_animation.setEnabled(False)
+            self.button_order_swing_animation.setEnabled(False)
+            self.button_cross_swing_animation.setEnabled(False)
             # 运行子线程
             self.trajectory_animation_thread.start()
         else:
@@ -409,7 +411,9 @@ class Page4_Double_Sim_Window(QFrame):
                                                                        animation_name
                                                                        )
             self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
+            self.button_sync_swing_animation.setEnabled(False)
             self.button_order_swing_animation.setEnabled(False)
+            self.button_cross_swing_animation.setEnabled(False)
             # 运行子线程
             self.trajectory_animation_thread.start()
         else:
@@ -441,6 +445,8 @@ class Page4_Double_Sim_Window(QFrame):
                                                                        animation_name
                                                                        )
             self.trajectory_animation_thread.result_ready.connect(self.trajectory_animation_ready)
+            self.button_sync_swing_animation.setEnabled(False)
+            self.button_order_swing_animation.setEnabled(False)
             self.button_cross_swing_animation.setEnabled(False)
             # 运行子线程
             self.trajectory_animation_thread.start()

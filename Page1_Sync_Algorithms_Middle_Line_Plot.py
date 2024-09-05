@@ -108,7 +108,7 @@ class middle_line_plot():
         plt.xlabel('Tile feed direction')
         plt.ylabel('Beam swing direction')
         between_cell = math.floor(self.between / self.v1 / msize)  # 间距步长
-        color_20 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'yellow', 'lightgreen',
+        color_20 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple','lightgreen',
                         'slategrey', 'cornflowerblue', 'navy', 'indigo', 'violet', 'plum', 'oldlace', 'maroon',
                         'lightcyan', 'lightseagreen', 'seagreen', 'springgreen']  # 红橙黄绿青蓝紫
         for i in range(0, self.num):

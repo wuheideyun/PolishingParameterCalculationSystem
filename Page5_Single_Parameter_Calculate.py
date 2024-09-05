@@ -7,7 +7,7 @@ def single_num_calculate(v1,ceramic_width,between_beam,R,overlap,a,beam_speed_up
     theta = math.atan(v2 / v1)
     between = (2*R-overlap)/math.sin(theta)
     # 中间计算(边部停留时长为单倍磨头间距)
-    B = (ceramic_width + 120) - 2 * R           # 摆幅（要求两极限位置各伸出80mm）
+    B = (ceramic_width + 120) - 2 * R           # 摆幅（要求两极限位置各伸出60mm）
     t_a = v2 / a                      # 加速时间
     t_e = (B - a * t_a ** 2) / v2     # 匀速时间
     t_between = between / v1          # 边部停留时长

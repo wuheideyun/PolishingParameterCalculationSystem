@@ -24,7 +24,9 @@ class Animation_produce(QThread):
         self.msize = 0.15
         period = round(4 * (v2 / a) + 2 * t1 + 2 * t2, 2)
         self.all_time_n = math.floor(period / self.msize) * self.n
-        self.color_7 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'yellow','lightgreen','slategrey','cornflowerblue','navy','indigo','violet','plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
+        self.color_7 = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'yellow',
+                        'lightgreen','slategrey','cornflowerblue','navy','indigo','violet',
+                        'plum','oldlace','maroon','lightcyan','lightseagreen','seagreen','springgreen']  # 红橙黄绿青蓝紫
         # 计算矩阵
         self.single_X_location, self.single_Y_location = self.inner_cal_matrix()
         # 创建坐标绘图区
@@ -35,7 +37,7 @@ class Animation_produce(QThread):
         self.ax.set_xlim(self.x_range)
         # y轴使用系数扩展显示范围
         self.y_range = [-0.5 * 1.3 * ((a * (v2 / a) ** 2 + v2 * t1) + 2 * R ),
-                          0.5 * 2.3 * ((a * (v2 / a) ** 2 + v2 * t1) + 2 * R)]
+                          0.5 * 2.5 * ((a * (v2 / a) ** 2 + v2 * t1) + 2 * R)]
         self.ax.set_ylim(self.y_range)
         self.ax.set_aspect('equal', adjustable='box')
         # 设置坐标轴名称
@@ -118,7 +120,6 @@ class Animation_produce(QThread):
             single_X_location[0, i * T_size:(i + 1) * T_size] = X_location + period * v1 * i
             single_Y_location[0, i * T_size:(i + 1) * T_size] = Y_location
         return single_X_location, single_Y_location
-
     def update(self, i):
         # 设置坐标轴移动
         self.x_range[0] -= self.one_size
