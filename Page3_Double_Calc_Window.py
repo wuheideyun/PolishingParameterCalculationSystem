@@ -15,7 +15,7 @@ from Page3_Double_Algorithms_Polishing_Distribution_Simulation import Polishing_
 from Page3_Double_Algorithms_Polishing_Distribution_Simulation import Polishing_distribution_Thread_order_unequal
 from Page3_Double_Algorithms_Self_Define_Calculate import self_define_calculate
 from Page3_Double_Generate_Animation import Animation_produce_order
-
+from Public_Polishing_Distribution_Plot import polishing_distribution_Plot
 
 class Page3_Double_Calc_Window(QFrame):
 
@@ -515,18 +515,8 @@ class Page3_Double_Calc_Window(QFrame):
 
     def Polishing_distribution_ready(self, object_matrix, result):  # 子线程回调函数
         # 在主线程中绘图
-        plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 设置微软雅黑字体
-        plt.rcParams['axes.unicode_minus'] = False  # 避免坐标轴不能正常的显示负号
-        fig = plt.figure('抛磨强度分布仿真')
-        ax = fig.add_subplot(111)
-        ax.set_aspect('equal', adjustable='box')
-        im = ax.contourf(object_matrix, 15, alpha=1, cmap='jet')
-        plt.xlabel('Tile feed direction')
-        plt.ylabel('Beam swing direction')
-        divider = make_axes_locatable(ax)
-        cax = divider.append_axes("right", size="5%", pad=0.1)
-        plt.colorbar(im, cax=cax)
-        plt.show()  # 显示函数图像
+        polishing_distribution_Plot(object_matrix)
+        #self.lineedit_coefficient.setText(result)
         # equal_coefficient
         self.button_order_swing_simulation.setEnabled(True)
         self.button_order_swing_custom_simulation.setEnabled(True)

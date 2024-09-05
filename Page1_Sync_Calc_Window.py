@@ -7,6 +7,7 @@ from PySide6.QtGui import QMovie, QIcon
 from PySide6.QtWidgets import QHBoxLayout, QFrame, QWidget, QGridLayout, QVBoxLayout, QLabel, QMainWindow, QMessageBox
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+from Public_Polishing_Distribution_Plot import polishing_distribution_Plot
 from qfluentwidgets import PrimaryPushButton, LineEdit, BodyLabel, ImageLabel
 
 from Page1_Sync_Algorithms_Polishing_Distribution_Simulation import Polishing_distribution_Thread
@@ -466,23 +467,11 @@ class Page1_Window_Sync_Calc(QFrame):
 
     def Polishing_distribution_ready(self, object_matrix, result):  # 子线程回调函数
         # 在主线程中绘图
-        plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 设置微软雅黑字体
-        plt.rcParams['axes.unicode_minus'] = False  # 避免坐标轴不能正常的显示负号
-        fig = plt.figure('抛磨强度分布仿真')
-        ax = fig.add_subplot(111)
-        ax.set_aspect('equal', adjustable='box')
-        im = ax.contourf(object_matrix, 15, alpha=1, cmap='jet')
-        plt.xlabel('Tile feed direction')
-        plt.ylabel('Beam swing direction')
-        divider = make_axes_locatable(ax)
-        cax = divider.append_axes("right", size="5%", pad=0.1)
-        plt.colorbar(im, cax=cax)
-        plt.show()  # 显示函数图像
+        polishing_distribution_Plot(object_matrix)
         self.lineedit_coefficient.setText(result)
         self.button_simulation.setEnabled(True)
 
         # 绘制磨头中心轨迹线
-
     def middle_line_figure_plot(self):
         if self.needReCalculation():
             QMessageBox.information(None, '提示', '参数已经更改，请重新点击【计算】后再执行此操作！')
