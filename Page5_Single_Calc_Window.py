@@ -16,7 +16,7 @@ from Page5_Single_Parameter_Calculate import single_num_calculate
 from Page5_Single_Polishing_Distribution_Simulation import Polishing_distribution_Thread_order_unequal, \
     Polishing_distribution_Thread_order
 from Public_Polishing_Distribution_Plot import polishing_distribution_Plot
-
+from Log_record_function import log_single_cal_parm_change
 class Page5_Single_Calc_Window(QFrame):
 
     def __init__(self, text: str, parent=None):
@@ -465,6 +465,10 @@ class Page5_Single_Calc_Window(QFrame):
         beam_speed_up = float(self.lineEdit_beam_speed_up.text())
         result = single_num_calculate(v1, ceramic_width, beam_between, R, overlap, a,
                                                                  beam_speed_up)
+        # 日志记录功能测试
+        log_single_cal_parm_change(self.button_energy_calculate.objectName(),self.lineEdit_grind_size.text(), self.lineEdit_belt_speed.text(), self.lineEdit_accelerate.text(), self.lineEdit_radius.text(), self.lineEdit_ceramic_width.text(),
+                                   self.lineEdit_beam_speed_up.text(), self.lineEdit_overlap.text(),self.lineEdit_beam_between.text(),self.lineEdit_num_set.text(),self.lineEdit_group_count.text(),
+                                   result[0, 1], result[0, 2], result[0, 3],result[0, 4], result[0, 6],result[0, 5],result[0, 7])
         self.lineEdit_beam_swing_speed.setText(str(result[0, 1]))
         self.lineEdit_beam_constant_time.setText(str(result[0, 2]))
         self.lineEdit_stay_time.setText(str(result[0, 3]))
